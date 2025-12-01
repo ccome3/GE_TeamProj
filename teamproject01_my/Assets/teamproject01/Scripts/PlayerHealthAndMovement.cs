@@ -33,6 +33,17 @@ public class PlayerHealthAndMovement : MonoBehaviour
     public Vector2 groundCheckSize = new Vector2(0.9f, 0.1f);
     private bool jumpCommand = false;
 
+    // === 사다리 기믹 변수 ===
+    [Header("사다리 설정")]
+    public float ladderClimbSpeed = 3.5f; // 사다리 타는 속도
+    public float gravityScaleOnLadder = 0.0f; // 사다리 탈 때 중력 (0으로 설정)
+    private bool isClimbingLadder = false; // 현재 사다리를 타고 있는지 여부
+    private GameObject currentLadder = null; // 현재 닿아있는 사다리 오브젝트
+    private float originalGravityScale; // 원래 중력 스케일 저장
+    private int originalLayer; // 🌟 원래 레이어 저장 변수 (충돌 무시용)
+    
+
+
     // === 덩쿨 로프 스윙 기믹 변수 ===
     [Header("로프 스윙 설정")]
     public float vineDetectionRadius = 2.0f;
@@ -63,7 +74,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Header("대쉬 잔상 설정")]
-    public float trailClearDelay = 0.5f; // 트레일이 완전히 사라질 때까지의 지연 시간
+    public float trailClearDelay = 0f; // 트레일이 완전히 사라질 때까지의 지연 시간
     public TrailRenderer trailRenderer; // 🌟 새로 추가
 
     private void Start()
@@ -71,6 +82,10 @@ public class PlayerHealthAndMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+
+        // 원본 물리 및 레이어 스케일 저장
+        originalGravityScale = rb.gravityScale; 
+        originalLayer = gameObject.layer; // 현재 플레이어의 원래 레이어 저장
 
         if (trailRenderer == null)
         {
@@ -103,8 +118,8 @@ public class PlayerHealthAndMovement : MonoBehaviour
 
     private void Update()
     {
-        // 무중력 공간 진입 시 로프 강제 해제 및 점프 방지 로직 (대쉬 중이 아닐 때만)
-        if (rb.gravityScale == 0f && !isDashing)
+        // 무중력 공간 진입 시 로프 강제 해제 및 점프 방지 로직 (대쉬/사다리 중이 아닐 때만)
+        if (rb.gravityScale == 0f && !isDashing && !isClimbingLadder)
         {
             if (isSwinging || isRopeExtending)
             {
@@ -112,7 +127,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
             }
             jumpCommand = false; 
         }
-        
+
         // 무적 시간 쿨다운
         if (isInvulnerable)
         {
@@ -129,8 +144,35 @@ public class PlayerHealthAndMovement : MonoBehaviour
             dashCooldownTimer -= Time.deltaTime;
         }
 
-        // 점프 입력 (대쉬, 스윙 중 점프 방지)
-        if (Input.GetButtonDown("Jump") && IsGrounded() && !isSwinging && !isDashing)
+        // ************** 사다리 타기 로직 **************
+
+        // 1. 사다리 타기 시작 입력 감지 (W 또는 S 키를 누르고 사다리 범위 내에 있을 때)
+        if (currentLadder != null) 
+        {
+            // 🌟 W 또는 S 키 입력 감지 (수정된 부분)
+            bool isClimbInputPressed = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S);
+            
+            if (isClimbInputPressed && !isClimbingLadder && !isDashing && !isSwinging)
+            {
+                StartClimbing();
+            }
+        }
+        
+        // 2. 사다리에서 내려오기/뛰어내리기 감지 (사다리 타는 중일 때)
+        if (isClimbingLadder)
+        {
+            // 점프 키(Space)를 누르면 사다리에서 뛰어내림
+            if (Input.GetButtonDown("Jump")) 
+            {
+                StopClimbing(true); // 점프하면서 중력 복원
+            }
+        }
+        
+        // ************** 사다리 타기 로직 종료 **************
+
+
+        // 점프 입력 (대쉬, 스윙, 사다리 중 점프 방지)
+        if (Input.GetButtonDown("Jump") && IsGrounded() && !isSwinging && !isDashing && !isClimbingLadder)
         {
             jumpCommand = true;
         }
@@ -141,7 +183,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
             CheckForVine();
         }
 
-        // LineRenderer 시각화
+        // LineRenderer 시각화 (기존 로직 유지)
         if (ropeRenderer == null) return; 
         if (ropeRenderer.positionCount != 2) ropeRenderer.positionCount = 2;
 
@@ -178,7 +220,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
         ropeRenderer.material.color = ropeColor;
         
         // 잡기 (Shift 키 누름)
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isSwinging && !isRopeExtending && currentVinePivot != null)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isSwinging && !isRopeExtending && currentVinePivot != null && !isClimbingLadder)
         {
             StartCoroutine(ExtendRopeAndGrab(currentVinePivot));
         }
@@ -195,6 +237,10 @@ public class PlayerHealthAndMovement : MonoBehaviour
             if (isSwinging || isRopeExtending)
             {
                 ReleaseVine();
+            }
+            if (isClimbingLadder)
+            {
+                StopClimbing(false); // 사다리 타기 중 대쉬 시 종료
             }
             StartCoroutine(DashCoroutine());
         }
@@ -217,6 +263,14 @@ public class PlayerHealthAndMovement : MonoBehaviour
         {
             return; 
         }
+
+        // ************** 사다리 이동 로직 (최우선) **************
+        if (isClimbingLadder)
+        {
+            HandleLadderClimbing();
+            return; // 사다리 탈 땐 아래 로직 무시
+        }
+        // ************** 사다리 이동 로직 종료 **************
         
         if (isSwinging)
         {
@@ -235,6 +289,95 @@ public class PlayerHealthAndMovement : MonoBehaviour
         }
     }
 
+    // === 사다리 기믹 전용 함수 ===
+
+    private void StartClimbing()
+    {
+        isClimbingLadder = true;
+        
+        // 🌟 레이어 변경 (땅과의 충돌 무시)
+        gameObject.layer = LayerMask.NameToLayer("LadderClimber"); 
+        
+        // 중력 제거 및 속도 초기화 (물리 제어)
+        rb.gravityScale = gravityScaleOnLadder;
+        rb.linearVelocity = Vector2.zero;
+
+        // 로프 스윙 중이었다면 해제
+        if (isSwinging || isRopeExtending)
+        {
+            ReleaseVine();
+        }
+        
+        // 사다리 중앙으로 플레이어 위치 정렬
+        if (currentLadder != null)
+        {
+            // 플레이어의 x 좌표를 사다리의 x 좌표로 정렬
+            float targetX = currentLadder.transform.position.x;
+            transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+        }
+        
+        Debug.Log("사다리 타기 시작.");
+    }
+
+    private void StopClimbing(bool triggerJump)
+    {
+        isClimbingLadder = false;
+        
+        // 🌟 원래 레이어로 복구 (다시 땅과 충돌하도록 설정)
+        gameObject.layer = originalLayer; 
+        
+        // 중력 복원
+        rb.gravityScale = originalGravityScale;
+        currentLadder = null; // 사다리 연결 해제
+
+        if (triggerJump)
+        {
+            // 사다리에서 뛰어내릴 때 약간의 상향 점프력 부여
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 0.5f);
+            Debug.Log("사다리에서 점프하여 이탈.");
+        }
+        else
+        {
+            Debug.Log("사다리 타기 종료.");
+        }
+    }
+    
+    private void HandleLadderClimbing()
+    {
+        // W/S 입력에 따라 Y축으로만 이동
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        
+        // X축 속도는 0으로 고정, Y축 속도만 적용
+        rb.linearVelocity = new Vector2(0f, verticalInput * ladderClimbSpeed);
+    }
+    
+    // 사다리 범위 진입/이탈 감지 (사다리 오브젝트는 Is Trigger 콜라이더를 가집니다)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ladder")) // 사다리 태그 확인
+        {
+            currentLadder = other.gameObject;
+            Debug.Log("사다리 범위 진입.");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ladder"))
+        {
+            if (other.gameObject == currentLadder)
+            {
+                // 사다리 범위 밖으로 나가면 무조건 사다리 타기 종료
+                if (isClimbingLadder)
+                {
+                    StopClimbing(false); 
+                }
+                currentLadder = null;
+                Debug.Log("사다리 범위 이탈.");
+            }
+        }
+    }
+    
     // === 대쉬 기믹 전용 함수 ===
     private IEnumerator DashCoroutine()
     {
@@ -260,6 +403,13 @@ public class PlayerHealthAndMovement : MonoBehaviour
         
         // 4. 대쉬 물리 적용
         float originalGravity = rb.gravityScale;
+        
+        // 🌟 대쉬 중 레이어 복구 (사다리 타는 중이 아니었다면)
+        if (!isClimbingLadder)
+        {
+            gameObject.layer = originalLayer;
+        }
+
         rb.gravityScale = 0f; // 중력 일시 비활성화
         rb.linearVelocity = dashVelocity; 
 
@@ -495,14 +645,17 @@ public class PlayerHealthAndMovement : MonoBehaviour
         spriteRenderer.color = originalColor; 
     }
 
-    // 땅에 닿으면 로프 자동 해제 기능
+    // 땅에 닿으면 로프 자동 해제 기능 (사다리 타는 중에는 레이어 변경으로 충돌 자체가 무시됨)
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // 1. 로프 스윙 중 땅에 닿으면 로프 해제 (기존 로직)
         if (isSwinging && (groundLayer.value & (1 << collision.gameObject.layer)) > 0)
         {
             ReleaseVine(); 
             // 착지 시 불필요한 속도 감속
             rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y * 0.1f); 
         }
+        
+        // 사다리 관련 로직은 레이어 충돌 매트릭스에 의해 여기서 처리되지 않습니다.
     }
 }

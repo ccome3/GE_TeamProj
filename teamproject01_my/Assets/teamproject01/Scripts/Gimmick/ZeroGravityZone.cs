@@ -7,7 +7,7 @@ public class ZeroGravityZone : MonoBehaviour
     private const float NORMAL_GRAVITY = 4.5f; // 👈 플레이어/오브젝트의 원래 Gravity Scale
     
     private const float ZERO_GRAVITY_DRAG = 0f;
-    private const float NORMAL_DRAG = 0.5f; // 👈 플레이어/오브젝트의 원래 Linear Drag (혹은 0f)
+    private const float NORMAL_DRAG = 0f; // 👈 플레이어/오브젝트의 원래 Linear Drag (혹은 0f)
 
     // 플레이어 또는 다른 물체가 영역에 진입했을 때
     private void OnTriggerEnter2D(Collider2D other)

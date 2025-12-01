@@ -1,6 +1,6 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: "C:/\uBC14\uD0D5 \uD654\uBA74/\uB300\uD559/2-2/GE_I/teamproject01_my/Packages/manifest.json"
+    m_FilePath: "C:/\uBC14\uD0D5 \uD654\uBA74/\uB300\uD559/2-2/GE_I/GE_TeamProj/teamproject01_my/Packages/manifest.json"
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
@@ -8,7 +8,7 @@ m_ProjectFiles:
       ticks: 638983487566505890
     m_Hash: 342737009
   m_LockFileStatus:
-    m_FilePath: "C:/\uBC14\uD0D5 \uD654\uBA74/\uB300\uD559/2-2/GE_I/teamproject01_my/Packages/packages-lock.json"
+    m_FilePath: "C:/\uBC14\uD0D5 \uD654\uBA74/\uB300\uD559/2-2/GE_I/GE_TeamProj/teamproject01_my/Packages/packages-lock.json"
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
@@ -19,7 +19,7 @@ m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
-m_ProjectPath: "C:/\uBC14\uD0D5 \uD654\uBA74/\uB300\uD559/2-2/GE_I/teamproject01_my/Packages"
+m_ProjectPath: "C:/\uBC14\uD0D5 \uD654\uBA74/\uB300\uD559/2-2/GE_I/GE_TeamProj/teamproject01_my/Packages"
 m_EditorVersion: 6000.2.2f1 (ea398eefe1c2)
 m_ResolvedPackages:
 - packageId: com.unity.ai.navigation@2.0.8
@@ -27,7 +27,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.8
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ai.navigation@eb5635ad590d"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ai.navigation@eb5635ad590d"
   assetPath: Packages/com.unity.ai.navigation
   name: com.unity.ai.navigation
   displayName: AI Navigation
@@ -152,7 +152,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 3.1.5
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.cinemachine@5342685532bb"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.cinemachine@5342685532bb"
   assetPath: Packages/com.unity.cinemachine
   name: com.unity.cinemachine
   displayName: Cinemachine
@@ -385,7 +385,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.10.2
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.collab-proxy@3351acaba9c9"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.collab-proxy@3351acaba9c9"
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Unity Version Control
@@ -572,7 +572,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.1
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.feature.2d@dd1ea8910f12"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.feature.2d@dd1ea8910f12"
   assetPath: Packages/com.unity.feature.2d
   name: com.unity.feature.2d
   displayName: 2D
@@ -718,7 +718,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 3.0.36
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.rider@4d374c7eb6db"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.rider@4d374c7eb6db"
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -851,7 +851,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.23
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.visualstudio@198cdf337d13"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.visualstudio@198cdf337d13"
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -969,7 +969,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.14.2
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.inputsystem@be6c4fd0abf5"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.inputsystem@be6c4fd0abf5"
   assetPath: Packages/com.unity.inputsystem
   name: com.unity.inputsystem
   displayName: Input System
@@ -1131,7 +1131,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.multiplayer.center@f3fb577b3546"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.multiplayer.center@f3fb577b3546"
   assetPath: Packages/com.unity.multiplayer.center
   name: com.unity.multiplayer.center
   displayName: Multiplayer Center
@@ -1227,7 +1227,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 17.2.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal@a2829103b3d4"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal@a2829103b3d4"
   assetPath: Packages/com.unity.render-pipelines.universal
   name: com.unity.render-pipelines.universal
   displayName: Universal Render Pipeline
@@ -1354,7 +1354,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.5.1
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework@a6f5be5f149c"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework@a6f5be5f149c"
   assetPath: Packages/com.unity.test-framework
   name: com.unity.test-framework
   displayName: Test Framework
@@ -1444,7 +1444,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.8.9
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.timeline@6b9e48457ddb"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.timeline@6b9e48457ddb"
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -1642,7 +1642,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ugui@754dbde2be27"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ugui@754dbde2be27"
   assetPath: Packages/com.unity.ugui
   name: com.unity.ugui
   displayName: Unity UI
@@ -1738,7 +1738,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.9.7
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.visualscripting@6279e2b7c485"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.visualscripting@6279e2b7c485"
   assetPath: Packages/com.unity.visualscripting
   name: com.unity.visualscripting
   displayName: Visual Scripting
@@ -4638,7 +4638,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.0.5
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ext.nunit@031a54704bff"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ext.nunit@031a54704bff"
   assetPath: Packages/com.unity.ext.nunit
   name: com.unity.ext.nunit
   displayName: Custom NUnit
@@ -4718,7 +4718,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.2.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.core@5e056b397fc0"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.core@5e056b397fc0"
   assetPath: Packages/com.unity.render-pipelines.core
   name: com.unity.render-pipelines.core
   displayName: Scriptable Render Pipeline Core
@@ -4844,7 +4844,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.2.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.shadergraph@287dd3fa176c"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.shadergraph@287dd3fa176c"
   assetPath: Packages/com.unity.shadergraph
   name: com.unity.shadergraph
   displayName: Shader Graph
@@ -4960,7 +4960,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.0.3
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal-config@8dc1aab4af1d"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal-config@8dc1aab4af1d"
   assetPath: Packages/com.unity.render-pipelines.universal-config
   name: com.unity.render-pipelines.universal-config
   displayName: Universal Render Pipeline Config
@@ -5068,7 +5068,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 12.0.2
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.animation@34e0443c58ed"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.animation@34e0443c58ed"
   assetPath: Packages/com.unity.2d.animation
   name: com.unity.2d.animation
   displayName: 2D Animation
@@ -5219,17 +5219,22 @@ m_ResolvedPackages:
     - 10.1.4
     - 10.2.0
     - 10.2.1
+    - 10.2.2
     - 11.0.0
     - 12.0.0
     - 12.0.1
     - 12.0.2
+    - 12.0.3
     - 13.0.0
     - 13.0.1
+    - 13.0.2
     - 14.0.0
     - 14.0.1
+    - 14.0.2
     compatible:
     - 12.0.2
-    recommended: 12.0.2
+    - 12.0.3
+    recommended: 12.0.3
     deprecated: []
   dependencies:
   - name: com.unity.2d.common
@@ -5334,7 +5339,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 5.1.1
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.pixel-perfect@09d99455b901"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.pixel-perfect@09d99455b901"
   assetPath: Packages/com.unity.2d.pixel-perfect
   name: com.unity.2d.pixel-perfect
   displayName: 2D Pixel Perfect
@@ -5447,7 +5452,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 11.0.1
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.psdimporter@0adcab25a8fd"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.psdimporter@0adcab25a8fd"
   assetPath: Packages/com.unity.2d.psdimporter
   name: com.unity.2d.psdimporter
   displayName: 2D PSD Importer
@@ -5555,6 +5560,7 @@ m_ResolvedPackages:
     - 11.0.1
     - 11.0.2
     - 12.0.0
+    - 12.0.1
     - 13.0.0
     - 13.0.1
     compatible:
@@ -5658,7 +5664,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.sprite@331abd9a1e2f"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.sprite@331abd9a1e2f"
   assetPath: Packages/com.unity.2d.sprite
   name: com.unity.2d.sprite
   displayName: 2D Sprite
@@ -5738,7 +5744,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 12.0.1
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.spriteshape@1d246726c231"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.spriteshape@1d246726c231"
   assetPath: Packages/com.unity.2d.spriteshape
   name: com.unity.2d.spriteshape
   displayName: 2D SpriteShape
@@ -5851,11 +5857,13 @@ m_ResolvedPackages:
     - 11.0.0
     - 12.0.0
     - 12.0.1
+    - 12.0.2
     - 13.0.0
     - 14.0.0
     compatible:
     - 12.0.1
-    recommended: 12.0.1
+    - 12.0.2
+    recommended: 12.0.2
     deprecated: []
   dependencies:
   - name: com.unity.2d.common
@@ -5951,7 +5959,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.0
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap@ba4a6b72f451"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap@ba4a6b72f451"
   assetPath: Packages/com.unity.2d.tilemap
   name: com.unity.2d.tilemap
   displayName: 2D Tilemap Editor
@@ -6050,7 +6058,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 5.0.1
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap.extras@2338d989ff2a"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap.extras@2338d989ff2a"
   assetPath: Packages/com.unity.2d.tilemap.extras
   name: com.unity.2d.tilemap.extras
   displayName: 2D Tilemap Extras
@@ -6122,12 +6130,14 @@ m_ResolvedPackages:
     - 4.3.1
     - 5.0.0
     - 5.0.1
+    - 5.0.2
     - 6.0.0
     - 6.0.1
     - 7.0.0
     compatible:
     - 5.0.1
-    recommended: 5.0.1
+    - 5.0.2
+    recommended: 5.0.2
     deprecated: []
   dependencies:
   - name: com.unity.2d.tilemap
@@ -6212,7 +6222,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.0.2
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.aseprite@dca42b450aa1"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.aseprite@dca42b450aa1"
   assetPath: Packages/com.unity.2d.aseprite
   name: com.unity.2d.aseprite
   displayName: 2D Aseprite Importer
@@ -6362,7 +6372,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.8.1
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.splines@b909627b5095"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.splines@b909627b5095"
   assetPath: Packages/com.unity.splines
   name: com.unity.splines
   displayName: Splines
@@ -6484,7 +6494,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 4.9.3
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.searcher@1e17ce91558d"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.searcher@1e17ce91558d"
   assetPath: Packages/com.unity.searcher
   name: com.unity.searcher
   displayName: Searcher
@@ -6583,7 +6593,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.8.24
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.burst@f7a407abf4d5"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.burst@f7a407abf4d5"
   assetPath: Packages/com.unity.burst
   name: com.unity.burst
   displayName: Burst
@@ -6818,7 +6828,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.3.2
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.mathematics@8017b507cc74"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.mathematics@8017b507cc74"
   assetPath: Packages/com.unity.mathematics
   name: com.unity.mathematics
   displayName: Mathematics
@@ -6919,7 +6929,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.5.7
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.collections@d49facba0036"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.collections@d49facba0036"
   assetPath: Packages/com.unity.collections
   name: com.unity.collections
   displayName: Collections
@@ -7113,7 +7123,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.1
   source: 2
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.rendering.light-transport@2c9279f90d7c"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.rendering.light-transport@2c9279f90d7c"
   assetPath: Packages/com.unity.rendering.light-transport
   name: com.unity.rendering.light-transport
   displayName: Unity Light Transport Library
@@ -7219,7 +7229,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 11.0.1
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.common@dd402daace1b"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.common@dd402daace1b"
   assetPath: Packages/com.unity.2d.common
   name: com.unity.2d.common
   displayName: 2D Common
@@ -7305,6 +7315,7 @@ m_ResolvedPackages:
     - 12.0.0
     - 12.0.1
     - 13.0.0
+    - 13.0.1
     compatible:
     - 11.0.1
     recommended: 11.0.1
@@ -7397,7 +7408,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.1.0
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.settings-manager@41738c275190"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.settings-manager@41738c275190"
   assetPath: Packages/com.unity.settings-manager
   name: com.unity.settings-manager
   displayName: Settings Manager
@@ -7486,7 +7497,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.11.5
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.nuget.mono-cecil@d78732e851eb"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.nuget.mono-cecil@d78732e851eb"
   assetPath: Packages/com.unity.nuget.mono-cecil
   name: com.unity.nuget.mono-cecil
   displayName: Mono Cecil
@@ -7581,7 +7592,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 3.1.0
   source: 1
-  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework.performance@92d1d09a72ed"
+  resolvedPath: "C:\\\uBC14\uD0D5 \uD654\uBA74\\\uB300\uD559\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework.performance@92d1d09a72ed"
   assetPath: Packages/com.unity.test-framework.performance
   name: com.unity.test-framework.performance
   displayName: Performance testing API

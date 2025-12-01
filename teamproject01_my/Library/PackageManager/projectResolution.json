@@ -1,18 +1,18 @@
 {
   "context": {
-    "projectPath": "C:/바탕 화면/대학/2-2/GE_I/teamproject01_my/Packages",
+    "projectPath": "C:/바탕 화면/대학/2-2/GE_I/GE_TeamProj/teamproject01_my/Packages",
     "unityVersion": "6000.2.2f1"
   },
   "inputs": [
-    "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Packages\\manifest.json",
-    "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Packages\\packages-lock.json",
+    "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Packages\\manifest.json",
+    "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Packages\\packages-lock.json",
     "C:\\Program Files\\Unity\\Hub\\Editor\\6000.2.2f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
   ],
   "outputs": {
     "com.unity.ai.navigation@2.0.8": {
       "name": "com.unity.ai.navigation",
       "displayName": "AI Navigation",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ai.navigation@eb5635ad590d",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ai.navigation@eb5635ad590d",
       "fingerprint": "eb5635ad590d47cef2a5c920d9475cc222db3f67",
       "editorCompatibility": "6000.0.0a1",
       "version": "2.0.8",
@@ -22,7 +22,7 @@
     "com.unity.cinemachine@3.1.5": {
       "name": "com.unity.cinemachine",
       "displayName": "Cinemachine",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.cinemachine@5342685532bb",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.cinemachine@5342685532bb",
       "fingerprint": "5342685532bbf7fa5b3a314c0b7ddba04ff17eff",
       "editorCompatibility": "2022.3.0a1",
       "version": "3.1.5",
@@ -32,7 +32,7 @@
     "com.unity.collab-proxy@2.10.2": {
       "name": "com.unity.collab-proxy",
       "displayName": "Unity Version Control",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.collab-proxy@3351acaba9c9",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.collab-proxy@3351acaba9c9",
       "fingerprint": "3351acaba9c9f7fc41d4b2404fc11c55d01ab0ad",
       "editorCompatibility": "2021.3.0f1",
       "version": "2.10.2",
@@ -42,7 +42,7 @@
     "com.unity.feature.2d@2.0.1": {
       "name": "com.unity.feature.2d",
       "displayName": "2D",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.feature.2d@dd1ea8910f12",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.feature.2d@dd1ea8910f12",
       "fingerprint": "dd1ea8910f12f021c166e8d0d78de44f1390ff6b",
       "version": "2.0.1",
       "source": "builtin",
@@ -51,7 +51,7 @@
     "com.unity.ide.rider@3.0.36": {
       "name": "com.unity.ide.rider",
       "displayName": "JetBrains Rider Editor",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.rider@4d374c7eb6db",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.rider@4d374c7eb6db",
       "fingerprint": "4d374c7eb6db6907c7e6925e3086c3c73f926e13",
       "editorCompatibility": "2019.4.6f1",
       "version": "3.0.36",
@@ -61,7 +61,7 @@
     "com.unity.ide.visualstudio@2.0.23": {
       "name": "com.unity.ide.visualstudio",
       "displayName": "Visual Studio Editor",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.visualstudio@198cdf337d13",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ide.visualstudio@198cdf337d13",
       "fingerprint": "198cdf337d13c83ca953581515630d66b779e92b",
       "editorCompatibility": "2019.4.25f1",
       "version": "2.0.23",
@@ -71,7 +71,7 @@
     "com.unity.inputsystem@1.14.2": {
       "name": "com.unity.inputsystem",
       "displayName": "Input System",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.inputsystem@be6c4fd0abf5",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.inputsystem@be6c4fd0abf5",
       "fingerprint": "be6c4fd0abf5b9b45f956b97294032a67f3c2f4d",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.14.2",
@@ -81,7 +81,7 @@
     "com.unity.multiplayer.center@1.0.0": {
       "name": "com.unity.multiplayer.center",
       "displayName": "Multiplayer Center",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.multiplayer.center@f3fb577b3546",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.multiplayer.center@f3fb577b3546",
       "fingerprint": "f3fb577b3546594b97b8cc34307cd621f60f1c73",
       "editorCompatibility": "6000.0.0a1",
       "version": "1.0.0",
@@ -91,7 +91,7 @@
     "com.unity.render-pipelines.universal@17.2.0": {
       "name": "com.unity.render-pipelines.universal",
       "displayName": "Universal Render Pipeline",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal@a2829103b3d4",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal@a2829103b3d4",
       "fingerprint": "a2829103b3d42d070af55d083049347cf216898c",
       "editorCompatibility": "6000.2.0a1",
       "version": "17.2.0",
@@ -101,7 +101,7 @@
     "com.unity.test-framework@1.5.1": {
       "name": "com.unity.test-framework",
       "displayName": "Test Framework",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework@a6f5be5f149c",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework@a6f5be5f149c",
       "fingerprint": "a6f5be5f149c799640cce1ac6aa4057426adc0c7",
       "editorCompatibility": "2022.3.0a1",
       "version": "1.5.1",
@@ -111,7 +111,7 @@
     "com.unity.timeline@1.8.9": {
       "name": "com.unity.timeline",
       "displayName": "Timeline",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.timeline@6b9e48457ddb",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.timeline@6b9e48457ddb",
       "fingerprint": "6b9e48457ddb4f64813d77fd77efc79a8f3102ae",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.8.9",
@@ -121,7 +121,7 @@
     "com.unity.ugui@2.0.0": {
       "name": "com.unity.ugui",
       "displayName": "Unity UI",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ugui@754dbde2be27",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ugui@754dbde2be27",
       "fingerprint": "754dbde2be278c90c6f2804c14a59bb1c6cff4ba",
       "editorCompatibility": "2019.2.0a1",
       "version": "2.0.0",
@@ -131,7 +131,7 @@
     "com.unity.visualscripting@1.9.7": {
       "name": "com.unity.visualscripting",
       "displayName": "Visual Scripting",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.visualscripting@6279e2b7c485",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.visualscripting@6279e2b7c485",
       "fingerprint": "6279e2b7c4858e56cca7f367cd38c49ef66778c9",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.9.7",
@@ -413,7 +413,7 @@
     "com.unity.ext.nunit@2.0.5": {
       "name": "com.unity.ext.nunit",
       "displayName": "Custom NUnit",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.ext.nunit@031a54704bff",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.ext.nunit@031a54704bff",
       "fingerprint": "031a54704bffe39e6a0324909f8eaa4565bdebf2",
       "editorCompatibility": "2019.4.0a1",
       "version": "2.0.5",
@@ -423,7 +423,7 @@
     "com.unity.render-pipelines.core@17.2.0": {
       "name": "com.unity.render-pipelines.core",
       "displayName": "Scriptable Render Pipeline Core",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.core@5e056b397fc0",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.core@5e056b397fc0",
       "fingerprint": "5e056b397fc0d6a40852063f677043eb1d27105c",
       "editorCompatibility": "6000.2.0a1",
       "version": "17.2.0",
@@ -433,7 +433,7 @@
     "com.unity.shadergraph@17.2.0": {
       "name": "com.unity.shadergraph",
       "displayName": "Shader Graph",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.shadergraph@287dd3fa176c",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.shadergraph@287dd3fa176c",
       "fingerprint": "287dd3fa176ca6d32a0e7df9c31073ff2700e705",
       "editorCompatibility": "6000.2.0a1",
       "version": "17.2.0",
@@ -443,7 +443,7 @@
     "com.unity.render-pipelines.universal-config@17.0.3": {
       "name": "com.unity.render-pipelines.universal-config",
       "displayName": "Universal Render Pipeline Config",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal-config@8dc1aab4af1d",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.render-pipelines.universal-config@8dc1aab4af1d",
       "fingerprint": "8dc1aab4af1d718781689a36ed5231a35ad1a524",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -453,7 +453,7 @@
     "com.unity.2d.animation@12.0.2": {
       "name": "com.unity.2d.animation",
       "displayName": "2D Animation",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.animation@34e0443c58ed",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.animation@34e0443c58ed",
       "fingerprint": "34e0443c58ed65e66d21023245d2862e066ab2e7",
       "editorCompatibility": "6000.2.0b4",
       "version": "12.0.2",
@@ -463,7 +463,7 @@
     "com.unity.2d.pixel-perfect@5.1.1": {
       "name": "com.unity.2d.pixel-perfect",
       "displayName": "2D Pixel Perfect",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.pixel-perfect@09d99455b901",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.pixel-perfect@09d99455b901",
       "fingerprint": "09d99455b9018d7a152bb766d42b2569236a7b4a",
       "editorCompatibility": "2021.3.0a1",
       "version": "5.1.1",
@@ -473,7 +473,7 @@
     "com.unity.2d.psdimporter@11.0.1": {
       "name": "com.unity.2d.psdimporter",
       "displayName": "2D PSD Importer",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.psdimporter@0adcab25a8fd",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.psdimporter@0adcab25a8fd",
       "fingerprint": "0adcab25a8fd3537d5829f344f6e2aa236d0cf8e",
       "editorCompatibility": "6000.2.0a10",
       "version": "11.0.1",
@@ -483,7 +483,7 @@
     "com.unity.2d.sprite@1.0.0": {
       "name": "com.unity.2d.sprite",
       "displayName": "2D Sprite",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.sprite@331abd9a1e2f",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.sprite@331abd9a1e2f",
       "fingerprint": "331abd9a1e2ff424a1ef2626e16936071ab7ce3d",
       "editorCompatibility": "2019.2.0a1",
       "version": "1.0.0",
@@ -493,7 +493,7 @@
     "com.unity.2d.spriteshape@12.0.1": {
       "name": "com.unity.2d.spriteshape",
       "displayName": "2D SpriteShape",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.spriteshape@1d246726c231",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.spriteshape@1d246726c231",
       "fingerprint": "1d246726c2316e2e6dd7d2aefba54ec6640affa9",
       "editorCompatibility": "6000.2.0a10",
       "version": "12.0.1",
@@ -503,7 +503,7 @@
     "com.unity.2d.tilemap@1.0.0": {
       "name": "com.unity.2d.tilemap",
       "displayName": "2D Tilemap Editor",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap@ba4a6b72f451",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap@ba4a6b72f451",
       "fingerprint": "ba4a6b72f4518be32ffa911682e3c1f11de50354",
       "editorCompatibility": "2019.2.0a1",
       "version": "1.0.0",
@@ -513,7 +513,7 @@
     "com.unity.2d.tilemap.extras@5.0.1": {
       "name": "com.unity.2d.tilemap.extras",
       "displayName": "2D Tilemap Extras",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap.extras@2338d989ff2a",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.tilemap.extras@2338d989ff2a",
       "fingerprint": "2338d989ff2aec99e03da44e42ae2faf1ebc037d",
       "editorCompatibility": "6000.2.0a10",
       "version": "5.0.1",
@@ -523,7 +523,7 @@
     "com.unity.2d.aseprite@2.0.2": {
       "name": "com.unity.2d.aseprite",
       "displayName": "2D Aseprite Importer",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.aseprite@dca42b450aa1",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.aseprite@dca42b450aa1",
       "fingerprint": "dca42b450aa1933467340cfd7bce324ddf7b06b2",
       "editorCompatibility": "6000.2.0a10",
       "version": "2.0.2",
@@ -533,7 +533,7 @@
     "com.unity.splines@2.8.1": {
       "name": "com.unity.splines",
       "displayName": "Splines",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.splines@b909627b5095",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.splines@b909627b5095",
       "fingerprint": "b909627b5095061d48761597bbb8384d6f04e510",
       "editorCompatibility": "2022.3.0a1",
       "version": "2.8.1",
@@ -543,7 +543,7 @@
     "com.unity.searcher@4.9.3": {
       "name": "com.unity.searcher",
       "displayName": "Searcher",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.searcher@1e17ce91558d",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.searcher@1e17ce91558d",
       "fingerprint": "1e17ce91558d1d9127554adc03d275f39a7466a2",
       "editorCompatibility": "2019.1.0a1",
       "version": "4.9.3",
@@ -553,7 +553,7 @@
     "com.unity.burst@1.8.24": {
       "name": "com.unity.burst",
       "displayName": "Burst",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.burst@f7a407abf4d5",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.burst@f7a407abf4d5",
       "fingerprint": "f7a407abf4d5abf19ce630824dcde261e02ed97e",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.8.24",
@@ -563,7 +563,7 @@
     "com.unity.mathematics@1.3.2": {
       "name": "com.unity.mathematics",
       "displayName": "Mathematics",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.mathematics@8017b507cc74",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.mathematics@8017b507cc74",
       "fingerprint": "8017b507cc74bf0a1dd14b18aa860569f807314d",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.3.2",
@@ -573,7 +573,7 @@
     "com.unity.collections@2.5.7": {
       "name": "com.unity.collections",
       "displayName": "Collections",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.collections@d49facba0036",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.collections@d49facba0036",
       "fingerprint": "d49facba0036aa0e1508296262f9d93b44d1ab3b",
       "editorCompatibility": "2022.3.20f1",
       "version": "2.5.7",
@@ -583,7 +583,7 @@
     "com.unity.rendering.light-transport@1.0.1": {
       "name": "com.unity.rendering.light-transport",
       "displayName": "Unity Light Transport Library",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.rendering.light-transport@2c9279f90d7c",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.rendering.light-transport@2c9279f90d7c",
       "fingerprint": "2c9279f90d7c8dfb6e76e3f90b6b3be1cafabfbc",
       "editorCompatibility": "2023.3.0b1",
       "version": "1.0.1",
@@ -593,7 +593,7 @@
     "com.unity.2d.common@11.0.1": {
       "name": "com.unity.2d.common",
       "displayName": "2D Common",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.common@dd402daace1b",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.2d.common@dd402daace1b",
       "fingerprint": "dd402daace1b7dbeb70cb9e7ae044cc4b10f989a",
       "editorCompatibility": "6000.2.0a9",
       "version": "11.0.1",
@@ -603,7 +603,7 @@
     "com.unity.settings-manager@2.1.0": {
       "name": "com.unity.settings-manager",
       "displayName": "Settings Manager",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.settings-manager@41738c275190",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.settings-manager@41738c275190",
       "fingerprint": "41738c27519039c335849eb78949382f4d7a3544",
       "editorCompatibility": "2022.3.0a1",
       "version": "2.1.0",
@@ -613,7 +613,7 @@
     "com.unity.nuget.mono-cecil@1.11.5": {
       "name": "com.unity.nuget.mono-cecil",
       "displayName": "Mono Cecil",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.nuget.mono-cecil@d78732e851eb",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.nuget.mono-cecil@d78732e851eb",
       "fingerprint": "d78732e851eb42273c8e4d97993d3a94b207e570",
       "editorCompatibility": "2019.4.0a1",
       "version": "1.11.5",
@@ -623,7 +623,7 @@
     "com.unity.test-framework.performance@3.1.0": {
       "name": "com.unity.test-framework.performance",
       "displayName": "Performance testing API",
-      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework.performance@92d1d09a72ed",
+      "resolvedPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Library\\PackageCache\\com.unity.test-framework.performance@92d1d09a72ed",
       "fingerprint": "92d1d09a72ed696fa23fd76c675b29d211664b50",
       "editorCompatibility": "2020.3.0a1",
       "version": "3.1.0",

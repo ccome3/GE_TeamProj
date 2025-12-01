@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - VinePivot
   - Gimic
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Gimmic
   - Item
   - Characters
-  - 
+  - LadderClimber
   - Vine
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: BackGround
     uniqueID: 3984067965
+    locked: 0
+  - name: MidGround
+    uniqueID: 3537388993
     locked: 0
   - name: Character
     uniqueID: 368301993
