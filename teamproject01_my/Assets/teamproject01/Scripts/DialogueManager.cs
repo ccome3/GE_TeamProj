@@ -6,12 +6,15 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     [Header("UI 연결")]
-    public GameObject dialoguePanel;     
-    public Image profileImage;           
-    public TextMeshProUGUI dialogueText;         
+    public GameObject dialoguePanel;
+    public Image profileImage;
+    public TextMeshProUGUI dialogueText;  
+    public TextMeshProUGUI nameText; // 🌟 [추가] NPC 이름을 표시할 Text 컴포넌트
     
-    // 🌟🌟🌟 [추가] 플레이어 움직임 스크립트 참조 🌟🌟🌟
-    private MonoBehaviour playerMovementScript; // PlayerHealthAndMovement 스크립트 참조용
+    private MonoBehaviour playerMovementScript; 
+    
+    // 🌟 현재 대화를 시작한 NPC 스크립트 참조
+    private NPCInteraction currentNPC; 
 
     private List<DialogueLine> currentDialogue;
     private int currentLineIndex = 0;
@@ -21,13 +24,17 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         
-        // 🌟🌟🌟 [수정] PlayerMovementScript 찾기 🌟🌟🌟
-        // 플레이어 오브젝트에 붙은 움직임 스크립트를 찾아 참조합니다.
-        // (사용자님의 스크립트 이름이 PlayerHealthAndMovement라고 가정합니다.)
+        // PlayerMovementScript 찾기 (PlayerHealthAndMovement라고 가정)
         playerMovementScript = FindObjectOfType<PlayerHealthAndMovement>();
         if (playerMovementScript == null)
         {
             Debug.LogError("PlayerHealthAndMovement 스크립트를 씬에서 찾을 수 없습니다! 플레이어 제어 불가.");
+        }
+        
+        // 🌟 [추가] 이름 텍스트 초기화
+        if (nameText != null)
+        {
+            nameText.text = "";
         }
     }
 
@@ -35,36 +42,39 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isDialogueActive) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DisplayNextLine();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            EndDialogue();
-        }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
+    {
+        DisplayNextLine();
+    }
+    else if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        EndDialogue();
+    }
     }
 
-    public void StartDialogue(List<DialogueLine> dialogueLines)
+    /// <summary>
+    /// 🌟 대화 시작 시 NPCInteraction 참조를 매개변수로 받음
+    /// </summary>
+    public void StartDialogue(List<DialogueLine> dialogueLines, NPCInteraction npc)
     {
         if (isDialogueActive) return;
 
+        currentNPC = npc; // 🌟 현재 NPC 저장
         currentDialogue = dialogueLines;
         currentLineIndex = 0;
         isDialogueActive = true;
         
         dialoguePanel.SetActive(true);
         
-        // 🌟🌟🌟 [수정] 시간 정지 제거 및 움직임 제어 🌟🌟🌟
+        // 플레이어 움직임 비활성화
         if (playerMovementScript != null)
         {
-            playerMovementScript.enabled = false; // 플레이어 움직임 비활성화
+            playerMovementScript.enabled = false; 
         }
         
         DisplayCurrentLine();
     }
 
-    // (DisplayCurrentLine() 함수와 DisplayNextLine() 함수는 동일합니다.)
     private void DisplayCurrentLine()
     {
         if (currentDialogue == null || currentLineIndex >= currentDialogue.Count)
@@ -76,6 +86,15 @@ public class DialogueManager : MonoBehaviour
         DialogueLine line = currentDialogue[currentLineIndex];
 
         dialogueText.text = line.LineText;
+        
+        // 🌟 [핵심 수정] NPC 이름 표시
+        if (nameText != null)
+        {
+            // DialogueLine에 CharacterName이 비어있다면, 이름창을 비웁니다.
+            nameText.text = string.IsNullOrEmpty(line.CharacterName) ? "" : line.CharacterName; 
+        }
+        
+        // 프로필 이미지 표시
         if (line.ProfileImage != null)
         {
             profileImage.sprite = line.ProfileImage;
@@ -83,7 +102,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            profileImage.color = new Color(1, 1, 1, 0); 
+            profileImage.color = new Color(1, 1, 1, 0); // 투명하게 만듦
         }
     }
 
@@ -100,18 +119,33 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// 🌟 대화 종료 시 NPC에게 PostDialogueAction 실행을 요청
+    /// </summary>
     private void EndDialogue()
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
         
-        // 🌟🌟🌟 [수정] 시간 재개 제거 및 움직임 복구 🌟🌟🌟
-        if (playerMovementScript != null)
+        // 🌟 [추가] 이름 텍스트 숨기기
+        if (nameText != null)
         {
-            playerMovementScript.enabled = true; // 플레이어 움직임 다시 활성화
+            nameText.text = ""; 
         }
         
+        // 플레이어 움직임 복구
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = true; 
+        }
+        
+        // 🌟 대화 종료 시 NPC의 후속 액션 실행
+        if (currentNPC != null)
+        {
+            currentNPC.PostDialogueAction(); 
+            currentNPC = null; 
+        }
+
         currentDialogue = null;
         Debug.Log("대화 종료.");
     }
