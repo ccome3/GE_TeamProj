@@ -8,6 +8,8 @@ TagManager:
   - VinePivot
   - Gimic
   - Ladder
+  - space
+  - RClick
   layers:
   - Default
   - TransparentFX

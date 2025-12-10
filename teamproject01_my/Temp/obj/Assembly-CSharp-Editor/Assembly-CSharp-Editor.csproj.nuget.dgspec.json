@@ -1,0 +1,120 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp-Editor.csproj": {}
+  },
+  "projects": {
+    "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp-Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp-Editor.csproj",
+        "projectName": "Assembly-CSharp-Editor",
+        "projectPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp-Editor.csproj",
+        "packagesPath": "C:\\Users\\mini8\\.nuget\\packages\\",
+        "outputPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Temp\\obj\\Assembly-CSharp-Editor\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mini8\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp.csproj": {
+                "projectPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp.csproj",
+        "projectName": "Assembly-CSharp",
+        "projectPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Assembly-CSharp.csproj",
+        "packagesPath": "C:\\Users\\mini8\\.nuget\\packages\\",
+        "outputPath": "C:\\바탕 화면\\대학\\2-2\\GE_I\\GE_TeamProj\\teamproject01_my\\Temp\\obj\\Assembly-CSharp\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mini8\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
