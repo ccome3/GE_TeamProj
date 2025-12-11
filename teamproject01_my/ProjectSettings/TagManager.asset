@@ -24,8 +24,8 @@ TagManager:
   - Characters
   - LadderClimber
   - Vine
-  - 
-  - 
+  - DamageTrigger
+  - Monster
   - InteractionTrigger
   - 
   - 

@@ -13,10 +13,16 @@ public class LaserGimmick : MonoBehaviour
     public float timeOff = 2.0f;    // 레이저가 사라지는 시간 (정상 시간 기준 m초)
     public float fadeDuration = 0.3f; // 레이저가 그려지듯 나타나고 사라지는 시간
 
+    [Header("초기 지연 설정")]
+    public float startDelay = 0f;   // 🌟 게임 시작 시, 첫 레이저가 나오기 전 대기 시간
+
+    [Header("공격력 설정")]
+    public int attackDamage = 1;    // 레이저 공격력
+
     // === 컴포넌트 참조 ===
     private LineRenderer lineRenderer;
     private BoxCollider2D boxCollider; 
-    private TimeAffectedObject timeAffect; // 🌟 시간 지연 시스템 참조
+    private TimeAffectedObject timeAffect; // 시간 지연 시스템 참조
 
     private Vector3 startPos;         // LineRenderer의 로컬 시작 위치 (Position 0)
     private Vector3 endPosTarget;     // LineRenderer의 로컬 최종 목표 위치 (Position 1)
@@ -25,7 +31,7 @@ public class LaserGimmick : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-        timeAffect = GetComponent<TimeAffectedObject>(); // 🌟 컴포넌트 가져오기
+        timeAffect = GetComponent<TimeAffectedObject>(); 
         
         startPos = lineRenderer.GetPosition(0); 
         endPosTarget = lineRenderer.GetPosition(1);
@@ -54,14 +60,22 @@ public class LaserGimmick : MonoBehaviour
     // 레이저 나타남/사라짐 반복 코루틴
     IEnumerator LaserCycleCoroutine()
     {
+        // 🌟 1. 초기 지연 시간 적용 (게임 시작 시 한 번만 실행)
+        // 이 시간 동안 레이저는 꺼진 상태로 대기합니다.
+        if (startDelay > 0f)
+        {
+            yield return StartCoroutine(WaitForAdjustedSeconds(startDelay));
+        }
+
+        // 🌟 2. 무한 반복 루프 시작
         while (true)
         {
-            // 🌟 TimeOff 대기: 조정된 시간 계수를 사용
+            // TimeOff 대기: 조정된 시간 계수를 사용
             yield return StartCoroutine(WaitForAdjustedSeconds(timeOff)); 
             
             yield return StartCoroutine(FadeLaser(true)); // 나타남
             
-            // 🌟 TimeOn 대기: 조정된 시간 계수를 사용
+            // TimeOn 대기: 조정된 시간 계수를 사용
             yield return StartCoroutine(WaitForAdjustedSeconds(timeOn)); 
             
             yield return StartCoroutine(FadeLaser(false)); // 사라짐
@@ -76,7 +90,7 @@ public class LaserGimmick : MonoBehaviour
         float timer = 0f;
         while (timer < duration)
         {
-            // 🌟 Time.deltaTime 대신 조정된 DeltaTime 사용
+            // Time.deltaTime 대신 조정된 DeltaTime 사용
             timer += timeAffect.DeltaTime(); 
             yield return null;
         }
@@ -98,7 +112,7 @@ public class LaserGimmick : MonoBehaviour
 
         while (timer < fadeDuration)
         {
-            // 🌟 Time.deltaTime 대신 조정된 DeltaTime 사용
+            // Time.deltaTime 대신 조정된 DeltaTime 사용
             timer += timeAffect.DeltaTime(); 
             float t = timer / fadeDuration; 
             float currentRatio = Mathf.Lerp(startRatio, endRatio, t);
@@ -143,20 +157,41 @@ public class LaserGimmick : MonoBehaviour
     // ⭐ 1. 충돌 시작 시 호출 (Enter)
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // "Player" 태그 확인 및 콜라이더 활성화 상태 확인
-        if (other.CompareTag("Player") && boxCollider.enabled)
+        if (boxCollider.enabled)
         {
-            DamagePlayer(other);
+            // 🌟 1. 플레이어 탐지 및 데미지 (지속 데미지가 필요한 경우, 이 로직은 Enter 시에도 실행되어야 함)
+            if (other.CompareTag("Player"))
+            {
+                DamagePlayer(other);
+            }
+            
+            // 🌟 2. 적(Enemy) 탐지 및 데미지 (오직 진입 시 한 번의 데미지만 허용)
+            EnemyStats enemy = other.GetComponent<EnemyStats>();
+            if (enemy != null)
+            {
+                DamageEnemy(enemy);
+            }
         }
     }
 
-    // ⭐ 2. 충돌 지속 시 호출 (Stay) - 이것이 연속 피해의 핵심
+    private void DamageEnemy(EnemyStats enemy)
+    {
+        enemy.TakeDamage(attackDamage);
+    }
+
+    // ⭐ 2. 충돌 지속 시 호출 (Stay) - 🌟 적 처리 로직 제거 🌟
     private void OnTriggerStay2D(Collider2D other)
     {
-        // "Player" 태그 확인 및 콜라이더 활성화 상태 확인
-        if (other.CompareTag("Player") && boxCollider.enabled)
+        if (boxCollider.enabled)
         {
-            DamagePlayer(other);
+            // 🌟 오직 플레이어만 처리 (플레이어는 지속 데미지 허용)
+            if (other.CompareTag("Player"))
+            {
+                DamagePlayer(other);
+            }
+            
+            // 🚨 EnemyStats 체크 및 DamageEnemy(enemy); 로직을 여기서 삭제합니다.
+            // 이로 인해 적은 레이저 위에 계속 있어도 추가 데미지를 입지 않습니다.
         }
     }
     
@@ -167,10 +202,8 @@ public class LaserGimmick : MonoBehaviour
             
         if (playerScript != null)
         {
-            // TakeDamage 함수가 호출되면, 플레이어 스크립트 내부의 무적 시간(0.5초)에 따라
-            // 피해를 입거나 무시됩니다.
             Vector2 laserDirection = (endPosTarget - startPos).normalized;
-            playerScript.TakeDamage(laserDirection);
+            playerScript.TakeDamage(attackDamage, laserDirection);
         }
     }
 }

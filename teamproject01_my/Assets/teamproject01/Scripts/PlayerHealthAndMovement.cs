@@ -10,6 +10,11 @@ public class PlayerHealthAndMovement : MonoBehaviour
     public float movementSpeed = 5.0f;
     public float jumpForce = 10.0f;
 
+    // 🌟 [추가] 체력바 컨트롤러 연결
+    [Header("UI 연결")]
+    public HealthBarController healthBar; 
+    private int maxHealth; // 최대 체력 저장
+
     [Header("피격 설정")]
     public float invulnerabilityDuration = 0.5f;
     public float knockbackForce = 10.0f;
@@ -30,12 +35,19 @@ public class PlayerHealthAndMovement : MonoBehaviour
     // 🌟 [추가] 낙하 대쉬 설정 (Dive Dash) 🌟
     [Header("낙하 대쉬 (Dive Dash) 설정")]
     public float diveDashSpeed = 20.0f; // 내리꽂는 속도
-    public float diveDashDistance = 100.0f; // 최대 이동 거리 (땅바닥까지 이동하는 것의 안전 장치)
+    public float diveDashDistance = 100.0f; // 최대 이동 거리
     public float diveDashInvulnerabilityDuration = 0.3f; // 무적 시간
     public float diveDashCooldown = 0.5f; // 쿨다운
     private bool isDiveDashing = false;
     private float diveDashCooldownTimer = 0f;
     private bool hasLandedAfterDive = false; // 낙하 대쉬 후 착지 여부
+
+    // 🌟 [추가] 거리 비례 데미지 설정 🌟
+    [Header("낙하 대쉬 공격력 설정")]
+    public int diveDashBaseDamage = 1; // 기본 피해량
+    public float damagePerUnitDistance = 0.5f; // 거리 1 단위당 추가될 피해량
+    private Vector3 diveDashStartPosition; // 낙하 대쉬 시작 위치 저장
+    private float traveledDistance; // 이동 거리 저장
 
     [Header("점프 최적화 설정")]
     public LayerMask groundLayer;
@@ -109,6 +121,13 @@ public class PlayerHealthAndMovement : MonoBehaviour
         originalGravityScale = rb.gravityScale; 
         originalLayer = gameObject.layer; // 현재 플레이어의 원래 레이어 저장
 
+        // 🌟 [수정] 최대 체력 저장 및 체력바 초기화
+        maxHealth = health;
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
+        
         if (trailRenderer == null)
         {
             if (GetComponent<TrailRenderer>() != null)
@@ -145,7 +164,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
     private void Update()
     {
         // 무중력 공간 진입 시 로프 강제 해제 및 점프 방지 로직 (대쉬/사다리 중이 아닐 때만)
-        if (rb.gravityScale == 0f && !isDashing && !isClimbingLadder && !isDiveDashing) // 🌟 [수정] Dive Dash 상태 추가
+        if (rb.gravityScale == 0f && !isDashing && !isClimbingLadder && !isDiveDashing)
         {
             if (isSwinging || isRopeExtending)
             {
@@ -170,18 +189,18 @@ public class PlayerHealthAndMovement : MonoBehaviour
             dashCooldownTimer -= Time.deltaTime;
         }
 
-        // 🌟 [추가] 낙하 대쉬 쿨타임 갱신
+        // 낙하 대쉬 쿨타임 갱신
         if (diveDashCooldownTimer > 0)
         {
             diveDashCooldownTimer -= Time.deltaTime;
         }
 
         // ==============================================================================
-        // 🌟 [핵심 로직] Left Click (Dive Dash Key) 입력 처리 🌟
+        // Left Click (Dive Dash Key) 입력 처리
         // ==============================================================================
         if (Input.GetMouseButtonDown(0))
         {
-            // 🌟 공중 상태여야 하고, 기존 대쉬/스윙/낙하대쉬 중이 아니어야 하며, 쿨타임이 지나야 합니다.
+            // 공중 상태여야 하고, 기존 대쉬/스윙/낙하대쉬 중이 아니어야 하며, 쿨타임이 지나야 합니다.
             if (!IsGrounded() && !isDashing && !isSwinging && !isRopeExtending && !isDiveDashing && diveDashCooldownTimer <= 0)
             {
                 // 로프를 잡고 있다면 해제
@@ -191,12 +210,11 @@ public class PlayerHealthAndMovement : MonoBehaviour
                 }
                 
                 StartCoroutine(DiveDashCoroutine());
-                // 낙하 대쉬는 튜토리얼 멈춤 해제 로직이 없으므로 추가적인 튜토리얼 플래그 검사는 생략합니다.
             }
         }
 
         // ==============================================================================
-        // 🌟 [핵심 로직] RClick (Dash Key) 입력 처리: 기존 로직
+        // RClick (Dash Key) 입력 처리: 기존 로직
         // ==============================================================================
         if (Input.GetMouseButtonDown(1))
         {
@@ -216,10 +234,9 @@ public class PlayerHealthAndMovement : MonoBehaviour
             }
             
             // 2. 시간이 멈춰있지 않고, 대쉬 조건이 맞을 때만 실행 (일반적인 경우)
-            // OR 시간이 방금 풀렸다면 (wasTimeStoppedByTutorial), 무조건 대쉬 실행
-            if (!isDiveDashing && (wasTimeStoppedByTutorial || (!isDashing && dashCooldownTimer <= 0))) // 🌟 [수정] Dive Dash 상태 중 Dash 방지
+            if (!isDiveDashing && (wasTimeStoppedByTutorial || (!isDashing && dashCooldownTimer <= 0)))
             {
-                // 일반 로직 수행 (튜토리얼 해제 시에도 대쉬가 바로 나가도록)
+                // 일반 로직 수행
                 if (isSwinging || isRopeExtending)
                 {
                     ReleaseVine();
@@ -237,7 +254,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
 
 
         // ==============================================================================
-        // 🌟 [핵심 로직] LeftShift (Rope Key) 입력 처리: 기존 로직
+        // LeftShift (Rope Key) 입력 처리: 기존 로직
         // ==============================================================================
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -264,8 +281,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
             }
 
             // 2. 시간이 멈춰있지 않고, 로프 잡기 조건이 맞을 때만 실행 (일반적인 경우)
-            // OR 시간이 방금 풀렸다면 (wasTimeStoppedByTutorial), 로프 잡기 조건 체크 후 실행
-            if (!isDiveDashing && (wasTimeStoppedByTutorial || (!isSwinging && !isRopeExtending && currentVinePivot != null && !isClimbingLadder))) // 🌟 [수정] Dive Dash 상태 중 Rope Grab 방지
+            if (!isDiveDashing && (wasTimeStoppedByTutorial || (!isSwinging && !isRopeExtending && currentVinePivot != null && !isClimbingLadder)))
             {
                 // 로프 잡기는 currentVinePivot != null 조건이 필요하므로 조건을 여기서 다시 체크합니다.
                 if (currentVinePivot != null)
@@ -277,7 +293,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
             if (wasTimeStoppedByTutorial) return;
         }
 
-        // 🌟 [일반 입력 영역] Dash 또는 Rope 튜토리얼이 활성화되어 있으면 이 안의 모든 입력 무시
+        // 일반 입력 영역
         if (!isDashTutorialActive && !isRopeTutorialActive)
         {
             // 3. 놓기 (Shift 키 뗌)
@@ -287,19 +303,18 @@ public class PlayerHealthAndMovement : MonoBehaviour
             }
             
             // ************** 사다리 타기 로직 **************
-            // 1. 사다리 타기 시작 입력 감지 (W 또는 S 키를 누르고 사다리 범위 내에 있을 때)
+            // 1. 사다리 타기 시작 입력 감지
             if (currentLadder != null) 
             {
                 bool isClimbInputPressed = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S);
                 
-                // 🌟 [수정] Dive Dash 상태 중 사다리 진입 방지
                 if (isClimbInputPressed && !isClimbingLadder && !isDashing && !isSwinging && !isDiveDashing) 
                 {
                     StartClimbing();
                 }
             }
             
-            // 2. 사다리에서 내려오기/뛰어내리기 감지 (사다리 타는 중일 때)
+            // 2. 사다리에서 내려오기/뛰어내리기 감지
             if (isClimbingLadder)
             {
                 if (Input.GetButtonDown("Jump")) 
@@ -310,8 +325,8 @@ public class PlayerHealthAndMovement : MonoBehaviour
             // ************** 사다리 타기 로직 종료 **************
 
 
-            // 점프 입력 (대쉬, 스윙, 사다리, 낙하대쉬 중 점프 방지)
-            if (Input.GetButtonDown("Jump") && IsGrounded() && !isSwinging && !isDashing && !isClimbingLadder && !isDiveDashing) // 🌟 [수정] Dive Dash 상태 중 점프 방지
+            // 점프 입력
+            if (Input.GetButtonDown("Jump") && IsGrounded() && !isSwinging && !isDashing && !isClimbingLadder && !isDiveDashing)
             {
                 jumpCommand = true;
             }
@@ -331,7 +346,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
             {
                 verticalRopeInput = 0f;
             }
-        } // 🌟 일반 입력 방지 영역 끝
+        } // 일반 입력 방지 영역 끝
 
         // LineRenderer 시각화
         if (ropeRenderer == null) return; 
@@ -363,7 +378,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
                 ropeRenderer.SetPosition(0, transform.position);
                 ropeRenderer.SetPosition(1, currentVinePivot.transform.position); 
             }
-            else // 로프 튜토리얼 중에는 로프를 아예 숨길 수도 있습니다. (선택 사항)
+            else // 로프 튜토리얼 중에는 로프를 아예 숨깁니다.
             {
                 ropeColor.a = 0.0f;
                 ropeRenderer.SetPosition(0, transform.position);
@@ -379,21 +394,21 @@ public class PlayerHealthAndMovement : MonoBehaviour
         
         ropeRenderer.material.color = ropeColor;
         
-        // 애니메이션 상태 업데이트 (입력 즉시 반응을 위해 Update에서 호출)
+        // 애니메이션 상태 업데이트
         UpdateAnimationState();
     }
     
     private void FixedUpdate()
     {
-        // 🌟 튜토리얼 모드 중에는 물리 이동을 막습니다.
-        if ((isDashTutorialActive || isRopeTutorialActive) && !isDashing && !isDiveDashing) // 🌟 [수정] Dive Dash 상태 제외
+        // 튜토리얼 모드 중에는 물리 이동을 막습니다.
+        if ((isDashTutorialActive || isRopeTutorialActive) && !isDashing && !isDiveDashing)
         {
             rb.linearVelocity = Vector2.zero;
             return;
         }
 
         // 대쉬 또는 낙하 대쉬 중에는 다른 물리 로직을 막습니다.
-        if (isDashing || isDiveDashing) // 🌟 [수정] Dive Dash 상태 추가
+        if (isDashing || isDiveDashing)
         {
             return; 
         }
@@ -416,7 +431,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
             HandleMovement(); 
         }
 
-        // 🌟 [추가] 낙하 대쉬 종료 후 착지 감지 및 속도 정리
+        // 낙하 대쉬 종료 후 착지 감지 및 속도 정리
         if (hasLandedAfterDive && IsGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
@@ -440,7 +455,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         float targetSpeed = 0f;
 
-        // 🌟 튜토리얼, 대쉬, 스윙, 낙하 대쉬 중에는 이동 애니메이션을 막습니다.
+        // 튜토리얼, 대쉬, 스윙, 낙하 대쉬 중에는 이동 애니메이션을 막습니다.
         if (!isClimbingLadder && !isDashing && !isSwinging && !isDashTutorialActive && !isDiveDashing)
         {
             if (moveInput != 0 && IsGrounded()) 
@@ -454,7 +469,6 @@ public class PlayerHealthAndMovement : MonoBehaviour
         }
         
         animator.SetFloat("Speed", targetSpeed); 
-        animator.SetBool("IsDashing", isDashing || isDiveDashing); // 🌟 [수정] 낙하 대쉬도 대쉬 애니메이션 사용
     }
     
     // === 사다리 기믹 전용 함수 ===
@@ -580,7 +594,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// 🌟 [추가] 공중에서 땅으로 내리꽂는 낙하 대쉬 코루틴
+    /// 공중에서 땅으로 내리꽂는 낙하 대쉬 코루틴
     /// </summary>
     private IEnumerator DiveDashCoroutine()
     {
@@ -598,12 +612,14 @@ public class PlayerHealthAndMovement : MonoBehaviour
         diveDashCooldownTimer = diveDashCooldown;
 
         float originalGravity = rb.gravityScale;
-        Vector3 startPosition = transform.position;
+        
+        // 🌟 [수정] 시작 위치 저장
+        diveDashStartPosition = transform.position; 
         
         rb.gravityScale = 0f; // 중력 비활성화
         rb.linearVelocity = new Vector2(0f, -diveDashSpeed); // 수직 하강 속도 적용
 
-        // 🌟 레이캐스트를 사용하여 바닥까지의 거리를 확인합니다.
+        // 레이캐스트를 사용하여 바닥까지의 거리를 확인합니다.
         RaycastHit2D hit = Physics2D.Raycast(
             transform.position, 
             Vector2.down, 
@@ -622,10 +638,8 @@ public class PlayerHealthAndMovement : MonoBehaviour
         float startTime = Time.time;
         
         // 이동 루프 (시간 또는 거리에 의해 제한)
-        while (Time.time < startTime + travelDuration && !IsGrounded())
+        while (Time.time < startTime + travelDuration && !IsGrounded() && isDiveDashing) // isDiveDashing 조건 추가
         {
-            // 땅에 닿을 때까지 다음 프레임을 기다립니다.
-            // 물리 업데이트는 FixedUpdate에서 진행되므로, 여기서는 시간만 체크합니다.
             if (IsGrounded()) break;
             yield return null; 
         }
@@ -823,21 +837,76 @@ public class PlayerHealthAndMovement : MonoBehaviour
         }
     }
 
-    public void TakeDamage(Vector2 laserDirection)
+    public void TakeDamage(int damage, Vector2 damageSourceDirection)
     {
         if (isInvulnerable) return; 
-        
-        health -= 1;
+
+        health -= damage; 
+
+        // 🌟 [추가] 체력이 변할 때마다 체력바 업데이트
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
+
         isInvulnerable = true;
         invulnerabilityTimer = invulnerabilityDuration;
         
         StartCoroutine(HitFlashCoroutine());
         rb.linearVelocity = Vector2.zero;
         
-        Vector2 finalKnockback = new Vector2(-laserDirection.x * knockbackForce, knockbackForce * 0.5f);
+        // 넉백 계산 
+        Vector2 finalKnockback = new Vector2(-damageSourceDirection.x * knockbackForce, knockbackForce * 0.5f);
         rb.AddForce(finalKnockback, ForceMode2D.Impulse);
 
         if (health <= 0) Debug.Log("Game Over!");
+    }
+
+    /// <summary>
+    /// 🌟 [핵심 수정] 낙하 대쉬 상태일 때 몬스터에게 피해를 입히고 반동을 발생시킵니다.
+    /// 이 함수에서 낙하 거리에 비례한 데미지를 계산합니다.
+    /// </summary>
+    public void TryDiveDashAttack(EnemyStats targetEnemy) // 🌟 damageAmount 인자 제거
+    {
+        // 1. 현재 Dive Dash 중인지 확인
+        if (!isDiveDashing) return;
+
+        // 2. 🌟 낙하 대쉬 이동 거리 계산
+        traveledDistance = Vector3.Distance(diveDashStartPosition, transform.position);
+
+        // 3. 🌟 최종 피해량 계산 (기본 데미지 + (거리 * 단위당 피해량))
+        int bonusDamage = Mathf.RoundToInt(traveledDistance * damagePerUnitDistance);
+        int finalDamage = diveDashBaseDamage + bonusDamage;
+        
+        Debug.Log($"Dive Dash 거리: {traveledDistance:F2}m, 최종 피해량: {finalDamage}");
+
+        // 4. 몬스터에게 피해를 입힙니다.
+        targetEnemy.TakeDamage(finalDamage);
+
+        // 5. 몬스터 공격 성공 시, Dive Dash 상태를 즉시 종료합니다.
+        
+        // **A. Dive Dash 코루틴 강제 종료**
+        StopCoroutine("DiveDashCoroutine");
+        isDiveDashing = false;
+
+        // **B. 물리 상태 초기화 및 반동 부여 (옵션)**
+        rb.gravityScale = originalGravityScale;
+
+        // 몬스터 공격 성공 시 플레이어를 위로 튕겨 올리는 반동(Bounce) 효과
+        float bounceForce = jumpForce * 0.8f; // 원하는 반동 크기로 조정
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, bounceForce); 
+
+        // **C. 잔상 비활성화**
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false;
+        }
+
+        Debug.Log("Dive Dash 공격 성공! 몬스터를 밟고 튕겨 오름.");
+
+        // **D. 공격 후 잠시 무적 상태 부여 (선택 사항)**
+        isInvulnerable = true;
+        invulnerabilityTimer = 0.1f; // 짧은 무적 시간
     }
 
     IEnumerator HitFlashCoroutine()
@@ -855,10 +924,9 @@ public class PlayerHealthAndMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y * 0.1f); 
         }
 
-        // 🌟 [추가] 낙하 대쉬 중 착지 시 속도 정리 (이미 FixedUpdate에서 처리되지만, 안전 장치)
+        // 낙하 대쉬 중 착지 시 속도 정리 (안전 장치)
         if (isDiveDashing && (groundLayer.value & (1 << collision.gameObject.layer)) > 0)
         {
-            // 코루틴은 다음 프레임에 종료되겠지만, 즉시 물리 상태를 정리
             rb.linearVelocity = Vector2.zero;
         }
     }
@@ -869,7 +937,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
         isDashing = false;
         StopCoroutine("DashCoroutine"); 
         
-        // 🌟 [추가] 낙하 대쉬 상태 강제 종료
+        // 🌟 낙하 대쉬 상태 강제 종료
         isDiveDashing = false;
         StopCoroutine("DiveDashCoroutine"); 
 
@@ -884,13 +952,13 @@ public class PlayerHealthAndMovement : MonoBehaviour
             ReleaseVine(); 
         }
         
-        // 3. 사다리 상태 강제 종료 (필요하다면)
+        // 3. 사다리 상태 강제 종료
         if (isClimbingLadder)
         {
             StopClimbing(false); 
         }
 
-        // 4. 강제로 중력 및 속도 복구 (안전 장치)
+        // 4. 강제로 중력 및 속도 복구
         rb.gravityScale = originalGravityScale;
         rb.linearVelocity = Vector2.zero; // 속도를 0으로 만들어 멈춘 상태 유지
     }
