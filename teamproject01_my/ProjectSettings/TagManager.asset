@@ -12,6 +12,8 @@ TagManager:
   - RClick
   - Wreckage
   - shift
+  - StartPoint
+  - EndPoint
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Gimmic
+  - Gimmick
   - Item
   - Characters
   - LadderClimber
