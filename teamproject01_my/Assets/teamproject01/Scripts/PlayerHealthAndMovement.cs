@@ -16,7 +16,7 @@ public class PlayerHealthAndMovement : MonoBehaviour
     [Header("피격 설정")]
     public float invulnerabilityDuration = 0.5f;
     public float knockbackForce = 10.0f;
-    private bool isInvulnerable = false;
+    public bool isInvulnerable = false;
     private float invulnerabilityTimer = 0f;
     public float hitFlashDuration = 0.2f;
     private Color originalColor;
@@ -764,25 +764,52 @@ public class PlayerHealthAndMovement : MonoBehaviour
 
     public void TakeDamage(int damage, Vector2 damageSourceDirection)
     {
-        if (isInvulnerable) return; 
+        if (isInvulnerable) return;
 
-        health -= damage; 
+        // 🌟 사망 상태라면 추가 데미지 무시 (중복 사망 방지)
+        if (health <= 0) return;
+
+        health -= damage;
 
         if (healthBar != null)
         {
             healthBar.UpdateHealthBar(health, maxHealth);
         }
 
+        if (health <= 0)
+        {
+            // 🌟 체력이 0이 되면 사망 로직 실행
+            Debug.Log("Game Over!");
+            
+            // 플레이어 조작 비활성화 (선택 사항, 리스폰 연출 중 움직임 방지)
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Static; // 물리 연산 중지
+            this.enabled = false; // 스크립트 비활성화
+
+            // GameManager에게 사망 알림
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.OnPlayerDied();
+            }
+            else
+            {
+                // GameManager가 없을 경우 비상용으로 씬 직접 재로드
+                Debug.LogError("GameManager가 씬에 없습니다!");
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            }
+            
+            return; // 사망했으므로 이후 피격 로직(무적시간, 넉백 등) 실행 안 함
+        }
+
+        // --- (이하 생존 시 피격 로직) ---
         isInvulnerable = true;
         invulnerabilityTimer = invulnerabilityDuration;
-        
+
         StartCoroutine(HitFlashCoroutine());
         rb.linearVelocity = Vector2.zero;
-        
+
         Vector2 finalKnockback = new Vector2(-damageSourceDirection.x * knockbackForce, knockbackForce * 0.5f);
         rb.AddForce(finalKnockback, ForceMode2D.Impulse);
-
-        if (health <= 0) Debug.Log("Game Over!");
     }
     public void TryDiveDashAttack(EnemyStats targetEnemy)
     {

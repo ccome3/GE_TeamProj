@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI; 
 using TMPro;
@@ -8,34 +9,34 @@ public class DialogueManager : MonoBehaviour
     [Header("UI 연결")]
     public GameObject dialoguePanel;
     public Image profileImage;
-    public TextMeshProUGUI dialogueText;  
-    public TextMeshProUGUI nameText; // 🌟 [추가] NPC 이름을 표시할 Text 컴포넌트
+    public TextMeshProUGUI dialogueText;  
+    public TextMeshProUGUI nameText; 
+
+    [Header("중앙 일러스트 설정")]
+    public Image centerIllustration; 
+    public float fadeDuration = 0.5f; // 페이드인 속도 조절
     
     private MonoBehaviour playerMovementScript; 
-    
-    // 🌟 현재 대화를 시작한 NPC 스크립트 참조
     private NPCInteraction currentNPC; 
-
     private List<DialogueLine> currentDialogue;
     private int currentLineIndex = 0;
     private bool isDialogueActive = false;
+
+    private Coroutine fadeCoroutine; // 현재 진행 중인 페이드 관리
 
     private void Start()
     {
         dialoguePanel.SetActive(false);
         
-        // PlayerMovementScript 찾기 (PlayerHealthAndMovement라고 가정)
+        // 중앙 이미지 초기화 (투명도 0으로 시작)
+        if (centerIllustration != null) 
+        {
+            centerIllustration.gameObject.SetActive(false);
+            SetAlpha(0f);
+        }
+
         playerMovementScript = FindObjectOfType<PlayerHealthAndMovement>();
-        if (playerMovementScript == null)
-        {
-            Debug.LogError("PlayerHealthAndMovement 스크립트를 씬에서 찾을 수 없습니다! 플레이어 제어 불가.");
-        }
-        
-        // 🌟 [추가] 이름 텍스트 초기화
-        if (nameText != null)
-        {
-            nameText.text = "";
-        }
+        if (nameText != null) nameText.text = "";
     }
 
     private void Update()
@@ -43,34 +44,27 @@ public class DialogueManager : MonoBehaviour
         if (!isDialogueActive) return;
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
-    {
-        DisplayNextLine();
-    }
-    else if (Input.GetKeyDown(KeyCode.Escape))
-    {
-        EndDialogue();
-    }
+        {
+            DisplayNextLine();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDialogue();
+        }
     }
 
-    /// <summary>
-    /// 🌟 대화 시작 시 NPCInteraction 참조를 매개변수로 받음
-    /// </summary>
     public void StartDialogue(List<DialogueLine> dialogueLines, NPCInteraction npc)
     {
         if (isDialogueActive) return;
 
-        currentNPC = npc; // 🌟 현재 NPC 저장
+        currentNPC = npc; 
         currentDialogue = dialogueLines;
         currentLineIndex = 0;
         isDialogueActive = true;
         
         dialoguePanel.SetActive(true);
         
-        // 플레이어 움직임 비활성화
-        if (playerMovementScript != null)
-        {
-            playerMovementScript.enabled = false; 
-        }
+        if (playerMovementScript != null) playerMovementScript.enabled = false; 
         
         DisplayCurrentLine();
     }
@@ -87,14 +81,12 @@ public class DialogueManager : MonoBehaviour
 
         dialogueText.text = line.LineText;
         
-        // 🌟 [핵심 수정] NPC 이름 표시
         if (nameText != null)
         {
-            // DialogueLine에 CharacterName이 비어있다면, 이름창을 비웁니다.
             nameText.text = string.IsNullOrEmpty(line.CharacterName) ? "" : line.CharacterName; 
         }
         
-        // 프로필 이미지 표시
+        // 1. 프로필 이미지 로직
         if (line.ProfileImage != null)
         {
             profileImage.sprite = line.ProfileImage;
@@ -102,7 +94,63 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            profileImage.color = new Color(1, 1, 1, 0); // 투명하게 만듦
+            profileImage.color = new Color(1, 1, 1, 0); 
+        }
+
+        // 🌟 2. 중앙 일러스트 페이드인 로직 적용
+        HandleIllustration(line.Illustration);
+    }
+
+    // 🌟 이미지를 교체하고 페이드인을 시작하는 함수
+    private void HandleIllustration(Sprite newIllustration)
+    {
+        if (centerIllustration == null) return;
+
+        // 이미 진행 중인 페이드가 있다면 중지
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+
+        if (newIllustration != null)
+        {
+            // 만약 이전 이미지와 다르다면 새로 페이드인
+            if (centerIllustration.sprite != newIllustration || !centerIllustration.gameObject.activeSelf)
+            {
+                centerIllustration.sprite = newIllustration;
+                centerIllustration.SetNativeSize();
+                fadeCoroutine = StartCoroutine(FadeInRoutine());
+            }
+        }
+        else
+        {
+            // 이미지가 없으면 비활성화
+            centerIllustration.gameObject.SetActive(false);
+            SetAlpha(0f);
+        }
+    }
+
+    // 🌟 실제 페이드 연출 코루틴
+    private IEnumerator FadeInRoutine()
+    {
+        centerIllustration.gameObject.SetActive(true);
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+            SetAlpha(alpha);
+            yield return null;
+        }
+        
+        SetAlpha(1f);
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        if (centerIllustration != null)
+        {
+            Color c = centerIllustration.color;
+            c.a = alpha;
+            centerIllustration.color = c;
         }
     }
 
@@ -119,27 +167,22 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 🌟 대화 종료 시 NPC에게 PostDialogueAction 실행을 요청
-    /// </summary>
     private void EndDialogue()
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
         
-        // 🌟 [추가] 이름 텍스트 숨기기
-        if (nameText != null)
+        // 대화 종료 시 중앙 이미지 숨김 및 초기화
+        if (centerIllustration != null) 
         {
-            nameText.text = ""; 
+            centerIllustration.gameObject.SetActive(false);
+            SetAlpha(0f);
         }
+
+        if (nameText != null) nameText.text = ""; 
         
-        // 플레이어 움직임 복구
-        if (playerMovementScript != null)
-        {
-            playerMovementScript.enabled = true; 
-        }
+        if (playerMovementScript != null) playerMovementScript.enabled = true; 
         
-        // 🌟 대화 종료 시 NPC의 후속 액션 실행
         if (currentNPC != null)
         {
             currentNPC.PostDialogueAction(); 
@@ -147,6 +190,5 @@ public class DialogueManager : MonoBehaviour
         }
 
         currentDialogue = null;
-        Debug.Log("대화 종료.");
     }
 }
