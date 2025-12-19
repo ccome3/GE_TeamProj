@@ -24,6 +24,11 @@ public class TutorialManager : MonoBehaviour
     public GameObject targetMonster;      // 씬에 비활성화된 몬스터
     public CanvasGroup monsterTutorialCG; // 텍스트 부모(CanvasGroup 추가된 것)
     public float attackFadeDuration = 1.5f;
+
+    [Header("중앙 텍스트 튜토리얼")]
+    public CanvasGroup centerTextCG;      // 중앙 텍스트의 부모 (Canvas Group)
+    public TextMeshProUGUI centerTMP;     // 실제 글자가 써질 TMP 텍스트
+    public float typingSpeed = 0.05f;     // 글자 나오는 속도
     void Start()
     {
         if (monsterTutorialCG != null)
@@ -239,5 +244,51 @@ public class TutorialManager : MonoBehaviour
         {
             childTexts[i].color = textTargetColors[i];
         }
+    }
+
+    public void StartCenterTextTutorial(string message)
+    {
+        if (centerTextCG == null || centerTMP == null) return;
+
+        StopAllCoroutines(); // 기존 재생 중인 페이드/타이핑 중복 방지
+        StartCoroutine(CenterTextSequence(message));
+    }
+
+    private IEnumerator CenterTextSequence(string message)
+    {
+        // 1. 초기화 (투명하게, 텍스트 비우기)
+        centerTextCG.alpha = 0f;
+        centerTextCG.gameObject.SetActive(true);
+        centerTMP.text = "";
+
+        // 2. 페이드 인 (동시에 진행)
+        float fadeTimer = 0f;
+        float fadeDuration = 1.0f;
+
+        // 3. 한 글자씩 타이핑 효과
+        // 페이드 인과 타이핑을 동시에 자연스럽게 연출하기 위해 alpha 조절을 먼저 시작
+        StartCoroutine(FadeInCanvasGroup(centerTextCG, fadeDuration));
+
+        foreach (char letter in message.ToCharArray())
+        {
+            centerTMP.text += letter;
+            // 타이핑 중에는 unscaledDeltaTime을 사용하여 시간 정지 중에도 작동 가능
+            yield return new WaitForSecondsRealtime(typingSpeed);
+        }
+
+        // 4. 잠시 대기 (플레이어가 글을 읽을 시간)
+        yield return new WaitForSecondsRealtime(2.0f);
+
+        // 5. 페이드 아웃
+        float timer = 0f;
+        while (timer < fadeDuration)
+        {
+            timer += Time.unscaledDeltaTime;
+            centerTextCG.alpha = Mathf.Lerp(1f, 0f, timer / fadeDuration);
+            yield return null;
+        }
+
+        centerTextCG.alpha = 0f;
+        centerTextCG.gameObject.SetActive(false);
     }
 }
