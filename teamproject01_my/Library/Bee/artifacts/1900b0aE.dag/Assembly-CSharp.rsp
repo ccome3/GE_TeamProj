@@ -487,6 +487,7 @@
 "Assets/teamproject01/Scripts/TrapDamage.cs"
 "Assets/teamproject01/Scripts/Tuto/DashTutorialTrigger.cs"
 "Assets/teamproject01/Scripts/Tuto/JumpTutorialTrigger.cs"
+"Assets/teamproject01/Scripts/Tuto/MonsterTutorialTrigger.cs"
 "Assets/teamproject01/Scripts/Tuto/RopeTutorialTrigger.cs"
 "Assets/teamproject01/Scripts/Tuto/TutorialManager.cs"
 "Assets/teamproject01/Scripts/VideoSceneManager.cs"

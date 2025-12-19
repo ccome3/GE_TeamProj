@@ -18,11 +18,14 @@ public class NPCInteraction : MonoBehaviour
     
     [Header("퀘스트 액션 설정")]
     public List<GameObject> wreckagesToActivate; 
-    private InventoryManager inventoryManager; 
     
+    private InventoryManager inventoryManager; 
     private bool isPlayerInRange = false;
     private SpriteRenderer spriteRenderer;
     private Color originalColor; 
+    
+    // 플레이어 위치 파악을 위한 참조 변수
+    private Transform playerTransform;
 
     private void Start()
     {
@@ -32,6 +35,9 @@ public class NPCInteraction : MonoBehaviour
         dialogueManager = FindObjectOfType<DialogueManager>();
         inventoryManager = FindObjectOfType<InventoryManager>(); 
         
+        // 🌟 처음 시작할 때 플레이어를 찾아둡니다.
+        FindPlayer();
+
         if (inventoryManager == null)
         {
             Debug.LogError("InventoryManager를 씬에서 찾을 수 없습니다!");
@@ -42,19 +48,59 @@ public class NPCInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))
+        // 🌟 플레이어가 범위 안에 있을 때만 로직 실행
+        if (isPlayerInRange)
         {
-            if (dialogueManager != null)
+            // 플레이어 참조가 날아갔을 경우를 대비한 안전장치
+            if (playerTransform == null) FindPlayer();
+
+            // 플레이어 방향을 바라보도록 Flip 실행
+            if (playerTransform != null)
             {
-                CheckAndSetDialogue(); 
-                dialogueManager.StartDialogue(currentDialogueSet, this); 
+                FlipTowardsPlayer();
             }
+
+            // 대화 시작 키 입력
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (dialogueManager != null)
+                {
+                    CheckAndSetDialogue(); 
+                    dialogueManager.StartDialogue(currentDialogueSet, this); 
+                }
+            }
+        }
+    }
+
+    private void FindPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerTransform = player.transform;
+        }
+    }
+
+    private void FlipTowardsPlayer()
+    {
+        // 플레이어와 NPC의 X 좌표 차이 계산
+        float direction = playerTransform.position.x - transform.position.x;
+
+        // 플레이어가 오른쪽에 있으면 (차이가 양수)
+        if (direction > 0.01f)
+        {
+            // NPC 원본이 왼쪽을 보고 있다면 true, 오른쪽을 보고 있다면 false로 수정하세요.
+            spriteRenderer.flipX = false; 
+        }
+        // 플레이어가 왼쪽에 있으면 (차이가 음수)
+        else if (direction < -0.01f)
+        {
+            spriteRenderer.flipX = true;
         }
     }
 
     private void CheckAndSetDialogue()
     {
-        // 🌟 아이템 소지 여부만 확인 (소모하지 않음)
         if (inventoryManager != null && inventoryManager.HasItem(requiredItemID))
         {
             currentDialogueSet = conditionalDialogue;
@@ -66,20 +112,13 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 🌟 대화 종료 후 실행할 액션 (아이템 소모 로직 제거됨)
-    /// </summary>
     public void PostDialogueAction()
     {
-        // 조건부 대화가 정상적으로 진행된 경우에만 오브젝트 활성화 등 후속 액션 실행
         if (currentDialogueSet == conditionalDialogue) 
         {
             Debug.Log("조건부 대화 종료됨. 후속 오브젝트 활성화 액션 실행.");
             
-            // 🌟 아이템 삭제 로직을 삭제했습니다.
-            // 아이템은 인벤토리에 그대로 남습니다.
-
-            if (wreckagesToActivate.Count > 0)
+            if (wreckagesToActivate != null && wreckagesToActivate.Count > 0)
             {
                 foreach (GameObject obj in wreckagesToActivate)
                 {

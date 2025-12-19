@@ -20,8 +20,17 @@ public class TutorialManager : MonoBehaviour
     public SpriteRenderer shiftObjectRenderer; // "Shift" 오브젝트의 SpriteRenderer
     public float ropeFadeDuration = 1.0f;
 
+    [Header("Monster 튜토리얼 설정 (Canvas 버전)")]
+    public GameObject targetMonster;      // 씬에 비활성화된 몬스터
+    public CanvasGroup monsterTutorialCG; // 텍스트 부모(CanvasGroup 추가된 것)
+    public float attackFadeDuration = 1.5f;
     void Start()
     {
+        if (monsterTutorialCG != null)
+        {
+            monsterTutorialCG.alpha = 0f;
+            monsterTutorialCG.gameObject.SetActive(false);
+        }
         // 1. "space" 태그 오브젝트 초기화
         GameObject spaceObject = GameObject.FindWithTag("space");
         if (spaceObject != null)
@@ -64,6 +73,35 @@ public class TutorialManager : MonoBehaviour
 
         StopAllCoroutines(); 
         StartCoroutine(FadeInCoroutine(spaceObjectRenderer, fadeDuration));
+    }
+
+    public void StartMonsterTutorial()
+    {
+        // 1. 몬스터 활성화
+        if (targetMonster != null)
+        {
+            targetMonster.SetActive(true);
+        }
+
+        // 2. UI 텍스트 페이드 인 시작
+        if (monsterTutorialCG != null)
+        {
+            monsterTutorialCG.gameObject.SetActive(true);
+            StartCoroutine(FadeInCanvasGroup(monsterTutorialCG, attackFadeDuration));
+        }
+    }
+
+    // CanvasGroup 전용 페이드 인 코루틴
+    private IEnumerator FadeInCanvasGroup(CanvasGroup cg, float duration)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            timer += Time.unscaledDeltaTime; // 시간 정지 상태에서도 작동하게 unscaled 사용
+            cg.alpha = Mathf.Lerp(0f, 1f, timer / duration);
+            yield return null;
+        }
+        cg.alpha = 1f;
     }
 
     // Dash 튜토리얼 시작 함수
